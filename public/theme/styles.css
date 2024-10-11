@@ -267,19 +267,17 @@ em {
 /* # Article list */
 
 .article-list {
-  margin-top: 16px;
+  display: grid;
+  gap: 16px;
+  margin: 16px 0;
+  grid-template-columns: 1fr;
 }
 
 .article-in-list {
-  border-top: 1px solid var(--grey-15);
-  display: flex;
   font-size: 1.5rem;
-  margin: 16px 0;
-  padding-top: 16px;
 }
 
 .article-in-list__cover {
-  width: 96px;
 }
 
 .article-in-list__cover-image {
@@ -321,8 +319,9 @@ em {
 }
 
 @media(min-width: 768px) {
-  .article-in-list__cover {
-    width: 128px;
+  .article-list {
+    gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .article-in-list__infos-and-items {

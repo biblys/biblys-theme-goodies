@@ -3,75 +3,14 @@
 		<article class="article-in-list">
 
 			<div class="article-in-list__cover">
-				{% if article.hasCover %}
-					{{ article.getCoverTag({
+				{% if article.model|hasImage %}
+					{% include "AppBundle:Article:_cover.html.twig" with {
+						article: article.model,
+						class: "article-in-list__cover-image",
 						link: path('article_show', { slug: article.url }),
-						class: 'article-in-list__cover-image'
-					})|raw }}
+						width: 350,
+					} %}
 				{% endif %}
-			</div>
-
-			<div class="article-in-list__infos-and-items">
-				<div class="article-in-list__infos">
-					{% if article.has('cycle') %}
-						<div class="article-in-list__cycle">
-							<a href="{{ path('cycle_show', { slug: article.cycle.url }) }}">
-								{{ article.cycle.name }}
-							</a>
-							{% if article.has('tome') %}
-								<span class="article-in-list__tome">
-									{{ ' - ' ~ article.tome }}
-								</span>
-							{% endif %}
-						</div>
-					{% endif %}
-					<h1 class="article-in-list__title">
-						<a href="{{ path('article_show', { slug: article.url }) }}">
-							{{ article.title }}
-						</a>
-					</h1>
-					<p class="article-in-list__authors">
-						<span class="article__by">de</span>
-						{% for author in article.getAuthors() %}
-						<a href="{{ path('people_show', { slug: author.url }) }}">
-							{{ author.name }}</a>{% if not loop.last %},{% endif %}
-						{% endfor %}
-					</p>
-					<p class="article-in-list__collection-and-publisher">
-						Coll.
-						<a href="{{ path('collection_show', { slug: article.collection.url }) }}">
-							{{ article.collection.name }}
-						</a>
-						(<a href="{{ path('publisher_show', { slug: article.publisher.url }) }}">{{ article.publisher.name }}</a>)
-					</p>
-				</div>
-
-				<div class="article-in-list__available-items">
-					{% set newItem = article.getCheapestAvailableItem('new') %}
-					{% if newItem %}
-						<p class="article-in-list__available-new-item">
-							<span class="fa fa-square led-green"></span>
-							<strong>Neuf</strong>
-							{{ newItem.selling_price|currency(true)|raw }}
-							<br />
-							{% include "AppBundle:Article:_cartButton.html.twig" with { "text": "Ajouter au panier" } %}
-						</p>
-					{% endif %}
-
-					{% set usedItem = article.getCheapestAvailableItem('used') %}
-					{% if usedItem %}
-						<p class="article-in-list__available-used-items">
-							<span class="fa fa-square led-orange"></span>
-							<strong>
-								<a href="{{ path('article_show', { slug: article.url }) }}#occasion">
-									En occasion
-								</a>
-							</strong><br />
-							à partir de
-							{{ usedItem.selling_price|currency(true)|raw }}
-						</p>
-					{% endif %}
-				</div>
 			</div>
 		</article>
 	{% endfor %}
