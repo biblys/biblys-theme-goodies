@@ -17,18 +17,6 @@
 
     <div class="article__infos-column">
 
-      {% if article.has('cycle') %}
-        <p class="article__cycle">
-          <a href="{{ path('cycle_show', { slug: article.cycle.url }) }}">
-            {{ article.cycle.name }}
-          </a>
-          {% if article.has('tome') %}
-            -
-            {{ article.tome }}
-          {% endif %}
-        </p>
-      {% endif %}
-
       <h1 class="article__title">{{ article.title }}</h1>
 
       <div class="article__authors-and-contributors">
