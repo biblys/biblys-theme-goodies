@@ -180,6 +180,20 @@ em {
   }
 }
 
+/* # Home page */
+
+.home-illustrations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px auto;
+  max-width: 100%;
+}
+
+.home-illustrations img {
+  max-width: 100%;
+}
+
 /* # Article page */
 
 .article__cover-image {
