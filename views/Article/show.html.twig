@@ -50,10 +50,12 @@
       </p>
       <p>
         {% include "AppBundle:Article:_cartButton.html.twig" with { "text": "Ajouter au panier" } %}
-        <a class="btn btn-default" href="https://belial.fr/isbn/{{ article.ean }}">
-          <span class="fa fa-book"></span>
-          Voir le livre
-        </a>
+        {% if article.has('ean') %}
+          <a class="btn btn-default" href="https://belial.fr/isbn/{{ article.ean }}">
+            <span class="fa fa-book"></span>
+            Voir le livre
+          </a>
+        {% endif %}
       </p>
 
       <p>
@@ -65,10 +67,6 @@
         <strong>Visuel non-contractuel.</strong>
         L'image sera imprimée sans titre, nom d'auteur et logo.
       </p>
-
-      {% if article.ean %}
-
-      {% endif %}
     </div>
   </article>
 
